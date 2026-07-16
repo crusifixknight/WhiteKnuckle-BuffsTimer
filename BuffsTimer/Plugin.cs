@@ -48,7 +48,8 @@ public class Plugin : BaseUnityPlugin
             RectTransform component = buffTimerGO.GetComponent<RectTransform>();
             Vector2 vector = new Vector2(0f, 1f);
             component.pivot = vector;
-            component.sizeDelta = new Vector2(500f, 500f);
+            component.anchorMin = component.anchorMax = vector;
+            component.sizeDelta = new Vector2(300f, 700f);
             buffTimerGO.AddComponent<BuffsMonitorComponent>().Setup(text);
         }
     }
