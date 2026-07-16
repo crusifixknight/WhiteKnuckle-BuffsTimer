@@ -45,6 +45,7 @@ public class Plugin : BaseUnityPlugin
             text.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
             text.fontSize = 18;
             text.color = Color.white;
+            text.raycastTarget = false;
             RectTransform component = buffTimerGO.GetComponent<RectTransform>();
             Vector2 vector = new Vector2(0f, 1f);
             component.pivot = vector;
