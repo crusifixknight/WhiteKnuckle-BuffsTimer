@@ -21,13 +21,27 @@ public class ItemBuff
 
     public override string ToString()
     {
-        float multiplier = ENT_Player.playerObject.curBuffs.GetBuff("buffTimeMult");
-        float timeMultiplier = 1f / Mathf.Max(1f + multiplier, 0.1f);
-        float timer = Buffs.Last().buffTime / (Buffs.Last().loseRate * timeMultiplier);
-        
+        float timer = GetTimer();
         var itemNameFormated = ItemPrefabName.Replace('_', ' ').Replace("Item", "").Replace("Denizen", ""); // Item_Food_Bar -> Food Bar, Denizen_SlugGrub -> SlugGrub
         
         return $"{itemNameFormated}: {timer:F2}s";
+    }
+
+    public bool IsBuffEnded()
+    {
+        if (!(GetTimer() <= 0.01)) return false;
+        
+        Plugin.Buffs.Remove(this);
+        return true;
+    }
+
+    private float GetTimer()
+    {
+        float multiplier = ENT_Player.playerObject.curBuffs.GetBuff("buffTimeMult");
+        float timeMultiplier = 1f / Mathf.Max(1f + multiplier, 0.1f);
+        float timer = Buffs.Last().buffTime / (Buffs.Last().loseRate * timeMultiplier);
+
+        return timer;
     }
 
     public Dictionary<string, float> GetBuffsAmount()

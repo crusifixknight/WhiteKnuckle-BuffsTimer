@@ -13,7 +13,7 @@ public class Plugin : BaseUnityPlugin
 {
     internal new static ManualLogSource Logger { get; private set; } = null!;
     private Harmony _harmony;
-    public static List<ItemBuff> Buffs = [];
+    public static readonly List<ItemBuff> Buffs = [];
 
     private void Awake()
     {
