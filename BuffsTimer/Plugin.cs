@@ -54,4 +54,9 @@ public class Plugin : BaseUnityPlugin
             buffTimerGO.AddComponent<BuffsMonitorComponent>().Setup(text);
         }
     }
+
+    public static void AddBuff(string prefabName, BuffContainer buffContainer)
+    {
+        Buffs.Add(new ItemBuff(prefabName, buffContainer));
+    }
 }

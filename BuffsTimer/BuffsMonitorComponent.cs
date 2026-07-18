@@ -22,7 +22,7 @@ public class BuffsMonitorComponent : MonoBehaviour
         {
             foreach (ItemBuff itemBuff in Plugin.Buffs)
             {
-                if (itemBuff.IsBuffEnded()) continue;
+                if (itemBuff.IsBuffEnded()) return;
 
                 var buffsAmount = itemBuff.GetBuffsAmount();
                 var buffsMaxAmount = itemBuff.GetBuffsMaxAmount();
