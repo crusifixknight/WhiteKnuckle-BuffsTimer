@@ -22,7 +22,17 @@ public class HandItem_FoodP
             return;
         
         var buffContainer = __instance.buff;
-            
+
+        /*
+         * Same thing as with mother instinct perk
+         */
+        var buff = Plugin.Buffs.FirstOrDefault(b => b.ItemPrefabName.Equals("Item_Beans_Periphery"));
+        if(buff != null)
+        {
+            buff.Buffs[0] = buffContainer;
+            return;
+        }
+        
         if (Plugin.Buffs.Any(b => b.ItemPrefabName.Equals(prefabName)))
         {
             Plugin.Buffs.FirstOrDefault(b => b.ItemPrefabName.Equals(prefabName))?.Buffs.Add(buffContainer);

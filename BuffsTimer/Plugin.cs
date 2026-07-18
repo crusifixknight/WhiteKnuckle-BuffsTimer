@@ -13,7 +13,8 @@ public class Plugin : BaseUnityPlugin
 {
     internal new static ManualLogSource Logger { get; private set; } = null!;
     private Harmony _harmony;
-    public static readonly List<ItemBuff> Buffs = [];
+    private static readonly List<ItemBuff> _buffs = [];
+    public static IReadOnlyList<ItemBuff> Buffs => _buffs;
 
     private void Awake()
     {
@@ -38,7 +39,7 @@ public class Plugin : BaseUnityPlugin
         GameObject go = GameObject.Find("GameManager/Canvas/Game UI/GameStateTrackers");
         if (go != null)
         {
-            Buffs.Clear();
+            _buffs.Clear();
             var buffTimerGO = new GameObject("BuffTimer");
             buffTimerGO.transform.SetParent(go.transform, false);
             Text text = buffTimerGO.AddComponent<Text>();
@@ -50,13 +51,27 @@ public class Plugin : BaseUnityPlugin
             Vector2 vector = new Vector2(0f, 1f);
             component.pivot = vector;
             component.anchorMin = component.anchorMax = vector;
-            component.sizeDelta = new Vector2(300f, 700f);
+            component.sizeDelta = new Vector2(400f, 700f);
             buffTimerGO.AddComponent<BuffsMonitorComponent>().Setup(text);
         }
     }
 
+    /// <summary>
+    /// Adds buff to list
+    /// </summary>
+    /// <param name="prefabName"></param>
+    /// <param name="buffContainer"></param>
     public static void AddBuff(string prefabName, BuffContainer buffContainer)
     {
-        Buffs.Add(new ItemBuff(prefabName, buffContainer));
+        _buffs.Add(new ItemBuff(prefabName, buffContainer));
+    }
+
+    /// <summary>
+    /// Remove buff from list
+    /// </summary>
+    /// <param name="buff"></param>
+    public static void RemoveBuff(ItemBuff buff)
+    {
+        _buffs.Remove(buff);
     }
 }

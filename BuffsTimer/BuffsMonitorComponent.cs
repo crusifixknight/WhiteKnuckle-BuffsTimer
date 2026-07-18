@@ -29,8 +29,10 @@ public class BuffsMonitorComponent : MonoBehaviour
                 stringBuilder.AppendLine(itemBuff.ToString());
                 foreach (var buffAmount in buffsAmount.Where(buffAmount => Math.Round(buffAmount.Value, 2) != 0))
                 {
+                    if (!BuffNames.Dict.TryGetValue(buffAmount.Key, out var buffName)) continue;
+
                     stringBuilder.AppendLine(
-                        $"\t<color=\"lightblue\">{buffAmount.Key} {buffAmount.Value:F2} ({buffsMaxAmount[buffAmount.Key]:F2})</color>");
+                        $"\t<color=\"lightblue\">{buffName} {buffAmount.Value:F2} ({buffsMaxAmount[buffAmount.Key]:F2})</color>");
                 }
             }
         }

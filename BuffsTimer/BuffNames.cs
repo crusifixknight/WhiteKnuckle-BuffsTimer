@@ -11,7 +11,7 @@ public static class BuffNames
         Dict = new Dictionary<string, string>
         {
             {"addJump", "Jump higher"},
-            {"addSpeed", "Running faster"},
+            {"addSpeed", "Run faster"},
             {"addClimb", "Climb faster"},
             {"addGripStrength", "Increased grip strength"},
             {"pilled", "Decreased stamina consumption"},
@@ -22,8 +22,13 @@ public static class BuffNames
             {"regenerateGripStrength", "Increased stamina regeneration"},
             {"addClimbSpeed", "Climb faster"},
             {"roided", "Climb faster (???)"},
-            {"grabAnything", "Grab any surface"}
-            
+            {"grabAnything", "Grab any surface"},
+            {"addStaminaRegen", "Stamina regen faster"},
+            {"addReach", "Long arm"},
+            {"boosted", "Boosted (How?)"}, // idk what that's mean, if you know pls dm
+            {"divideJumpStrain", "Divides climb-jumps cost"},
+            {"addGravity", "Gravity changed"},
+            {"addExtraJumps", "Extra jump"}
         };
     }
 }

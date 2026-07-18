@@ -31,7 +31,7 @@ public class ItemBuff
     {
         if (!(GetTimer() <= 0.01)) return false;
         
-        Plugin.Buffs.Remove(this);
+        Plugin.RemoveBuff(this);
         return true;
     }
 

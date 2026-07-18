@@ -17,8 +17,9 @@ public class HandItem_Buff_GrubP
     
         /*
          * Grub pet buffs doesn't stack. That's why we are rewriting previous buff
-         */ 
-        foreach(var buff in Plugin.Buffs.Where(b => b.Buffs.Any(bc => bc == buffContainer)))
+         */
+        var buff = Plugin.Buffs.FirstOrDefault(b => b.Buffs.Any(bc => bc == buffContainer));
+        if(buff != null)
         {
             buff.Buffs[0] = buffContainer;
             return;
