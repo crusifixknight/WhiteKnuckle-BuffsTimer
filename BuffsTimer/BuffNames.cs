@@ -22,7 +22,7 @@ public static class BuffNames
             {"regenerateGripStrength", "Increased stamina regeneration"},
             {"addClimbSpeed", "Climb faster"},
             {"roided", "Climb faster (???)"},
-            
+            {"grabAnything", "Grab any surface"}
             
         };
     }
