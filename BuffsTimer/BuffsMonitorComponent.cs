@@ -24,6 +24,8 @@ public class BuffsMonitorComponent : MonoBehaviour
             {
                 if (itemBuff.IsBuffEnded()) return;
                 
+                stringBuilder.AppendLine(itemBuff.ToString()); 
+                
                 var buffs = itemBuff.GetBuffs();
                 foreach (var buff in buffs.Where(b => Math.Round(b.Amount, 2) != 0))
                 {
