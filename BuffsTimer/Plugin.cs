@@ -59,8 +59,8 @@ public class Plugin : BaseUnityPlugin
     /// <summary>
     /// Adds buff to list
     /// </summary>
-    /// <param name="prefabName"></param>
-    /// <param name="buffContainer"></param>
+    /// <param name="prefabName">A string with prefabName</param>
+    /// <param name="buffContainer">A BuffContainer class instance</param>
     public static void AddBuff(string prefabName, BuffContainer buffContainer)
     {
         _buffs.Add(new ItemBuff(prefabName, buffContainer));
@@ -69,7 +69,7 @@ public class Plugin : BaseUnityPlugin
     /// <summary>
     /// Remove buff from list
     /// </summary>
-    /// <param name="buff"></param>
+    /// <param name="buff">An ItemBuff class instance</param>
     public static void RemoveBuff(ItemBuff buff)
     {
         _buffs.Remove(buff);

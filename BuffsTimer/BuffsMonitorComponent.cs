@@ -23,16 +23,13 @@ public class BuffsMonitorComponent : MonoBehaviour
             foreach (ItemBuff itemBuff in Plugin.Buffs)
             {
                 if (itemBuff.IsBuffEnded()) return;
-
-                var buffsAmount = itemBuff.GetBuffsAmount();
-                var buffsMaxAmount = itemBuff.GetBuffsMaxAmount();
-                stringBuilder.AppendLine(itemBuff.ToString());
-                foreach (var buffAmount in buffsAmount.Where(buffAmount => Math.Round(buffAmount.Value, 2) != 0))
+                
+                var buffs = itemBuff.GetBuffs();
+                foreach (var buff in buffs.Where(b => Math.Round(b.Amount, 2) != 0))
                 {
-                    if (!BuffNames.Dict.TryGetValue(buffAmount.Key, out var buffName)) continue;
-
+                    if (!BuffNames.Dict.TryGetValue(buff.BuffId, out var buffName)) continue;
                     stringBuilder.AppendLine(
-                        $"\t<color=\"lightblue\">{buffName} {buffAmount.Value:F2} ({buffsMaxAmount[buffAmount.Key]:F2})</color>");
+                        $"\t<color=\"lightblue\">{buffName} {buff.Amount:F2} ({buff.MaxAmount:F2})</color>");
                 }
             }
         }

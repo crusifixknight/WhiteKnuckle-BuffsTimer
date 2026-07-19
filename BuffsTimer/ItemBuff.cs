@@ -44,25 +44,31 @@ public class ItemBuff
         return timer;
     }
 
-    public Dictionary<string, float> GetBuffsAmount()
+    public List<BuffStat> GetBuffs()
     {
-        var result = new Dictionary<string, float>();
+        var result = new List<BuffStat>();
+        
         foreach (var hiddenBuff in Buffs.SelectMany(buff => buff.buffs))
         {
-            if (result.ContainsKey(hiddenBuff.id)) result[hiddenBuff.id] += hiddenBuff.amount;
-            else result.Add(hiddenBuff.id, hiddenBuff.amount);
+            var matchBuff = result.FirstOrDefault(b => b.BuffId == hiddenBuff.id);
+            if (matchBuff != null)
+            {
+                matchBuff.Amount += hiddenBuff.amount;
+                matchBuff.MaxAmount += hiddenBuff.maxAmount;
+            }
+            else
+            {
+                result.Add(new BuffStat(hiddenBuff.id, hiddenBuff.amount, hiddenBuff.maxAmount));
+            }
         }
-        return result;
-    }
 
-    public Dictionary<string, float> GetBuffsMaxAmount()
-    {
-        var result = new Dictionary<string, float>();
-        foreach (var hiddenBuff in Buffs.SelectMany(buff => buff.buffs))
-        {
-            if (result.ContainsKey(hiddenBuff.id)) result[hiddenBuff.id] += hiddenBuff.maxAmount;
-            else result.Add(hiddenBuff.id, hiddenBuff.maxAmount);
-        }
         return result;
     }
+}
+
+public class BuffStat(string buffId, float amount, float maxAmount)
+{
+    public string BuffId { get; } = buffId;
+    public float Amount { get; set; } = amount;
+    public float MaxAmount { get; set; }= maxAmount;
 }
