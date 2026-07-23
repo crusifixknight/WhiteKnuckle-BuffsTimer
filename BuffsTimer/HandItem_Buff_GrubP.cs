@@ -18,12 +18,10 @@ public class HandItem_Buff_GrubP
         /*
          * Grub pet buffs doesn't stack. That's why we are rewriting previous buff
          */
-        var buff = Plugin.Buffs.FirstOrDefault(b => b.Buffs.Any(bc => bc == buffContainer));
-        if(buff != null)
-        {
-            buff.Buffs[0] = buffContainer;
-            return;
-        }
+        var buff = Plugin.Buffs.FirstOrDefault(b => b.Buffs.Any(bc => bc.id == buffContainer.id));
+
+        if (buff != null) return;
+        
         
         Plugin.AddBuff(prefabName, buffContainer);
     }
