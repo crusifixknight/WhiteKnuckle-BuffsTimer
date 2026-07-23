@@ -8,12 +8,14 @@ namespace BuffsTimer;
 public class ItemBuff
 {
     public string ItemPrefabName { get; }
+    private readonly string _itemNameFormated;
     public List<BuffContainer> Buffs { get; }
     // public Sprite Icon { get; }
 
     public ItemBuff(string itemName, BuffContainer buff)
     {
         ItemPrefabName = itemName;
+        _itemNameFormated = ItemPrefabName.Replace('_', ' ').Replace("Item", "").Replace("Denizen", "").Replace("Empty", ""); // Item_Food_Bar -> Food Bar, Denizen_SlugGrub -> SlugGrub
         Buffs = [ buff ];
         // TODO: Change Item name with item icons
         //Icon = 
@@ -22,9 +24,8 @@ public class ItemBuff
     public override string ToString()
     {
         float timer = GetTimer();
-        var itemNameFormated = ItemPrefabName.Replace('_', ' ').Replace("Item", "").Replace("Denizen", ""); // Item_Food_Bar -> Food Bar, Denizen_SlugGrub -> SlugGrub
         
-        return $"{itemNameFormated}: {timer:F2}s";
+        return $"{_itemNameFormated}: {timer:F2}s";
     }
 
     public bool IsBuffEnded()
