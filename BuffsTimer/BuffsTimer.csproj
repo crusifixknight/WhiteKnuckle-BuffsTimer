@@ -5,7 +5,7 @@
         <AssemblyName>BuffsTimer</AssemblyName>
         <Product>Buffs Timer</Product>
         <GUID>com.crusifixknight.whiteknuckle-buffstimer</GUID>
-        <Version>1.1.1</Version>
+        <Version>1.1.2</Version>
         <Nullable>enable</Nullable>
         <LangVersion>13.0</LangVersion>
         <RestoreAdditionalProjectSources>
